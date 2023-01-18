@@ -18,13 +18,17 @@ public class Main {
             switch (choice) {
                 case 1 -> {
                     bookingCar();
+                    menu();
                 }
                 case 2 -> {
+                    showAllUsersWithCar();
+                    menu();
+                }
+                case 3 -> {
                     showAllBooking();
                     System.out.println();
                     menu();
                 }
-                case 3 -> {}
                 case 4 -> {
                     showAvailableCars();
                     System.out.println();
@@ -53,7 +57,7 @@ public class Main {
     }
     public static void menu() {
         System.out.println(
-                "1 - Book Car\n" +
+                        "1 - Book Car\n" +
                         "2️- View All User Booked Cars\n" +
                         "3 - View All Bookings\n" +
                         "4️- View Available Cars\n" +
@@ -116,7 +120,24 @@ public class Main {
         for (int i = 0; i < bookingService.showAllBooking().length; i++) {
             if (bookingService.showAllBooking()[i] != null) {
                 System.out.println(bookingService.showAllBooking()[i]);
-            } else System.out.println("Что-то не так");
+            } else {
+                System.out.println("We don't have any bookings");
+                System.out.println();
+                break;
+            }
+        }
+    }
+    public static void showAllUsersWithCar() {
+        BookingService bookingService = new BookingService();
+        for (int i = 0; i < bookingService.showAllBooking().length; i++) {
+            if (bookingService.showAllBooking()[i] != null) {
+                System.out.println(bookingService.showAllBooking()[i].getUser().getName() + " " +
+                        bookingService.showAllBooking()[i].getUser().getSurname());
+            } else {
+                System.out.println("We don't have any users with bookings");
+                System.out.println();
+                break;
+            }
         }
     }
 }
