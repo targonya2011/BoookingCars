@@ -10,48 +10,39 @@ import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) {
-        menu();
         Scanner sc = new Scanner(System.in);
-        int exit = 1;
-        while (exit != 0) {
-            int choice = sc.nextInt();
+        int choice;
+        do {
+            menu();
+            choice = sc.nextInt();
             switch (choice) {
                 case 1 -> {
                     bookingCar();
-                    menu();
                 }
                 case 2 -> {
                     showAllUsersWithCar();
-                    menu();
                 }
                 case 3 -> {
                     showAllBooking();
-                    System.out.println();
-                    menu();
                 }
                 case 4 -> {
                     showAvailableCars();
-                    System.out.println();
-                    menu();
                 }
                 case 5 -> {
                     showAvailableElectricCars();
-                    System.out.println();
-                    menu();
                 }
                 case 6 -> {
                     showAllUsers();
-                    menu();
                 }
                 case 7 -> {
-                    exit = 0;
+                    System.out.println("program completed");
                 }
                 default -> {
                     System.out.println(choice + " is not a valid option :(");
-                    menu();
                 }
             }
         }
+        while (choice != 7);
 
 
     }
@@ -70,6 +61,7 @@ public class Main {
         for(User user : userService.seeUsers()) {
             System.out.println(user.toString());
         }
+        System.out.println();
     }
     public static void showAvailableCars() {
         CarService carService = new CarService();
@@ -78,6 +70,7 @@ public class Main {
                 System.out.println(car);
             }
         }
+        System.out.println();
     }
     public static void showAvailableElectricCars() {
         CarService carService = new CarService();
@@ -86,6 +79,7 @@ public class Main {
                 System.out.println(car);
             }
         }
+        System.out.println();
     }
     public static void bookingCar() {
         BookingService bookingService = new BookingService();
@@ -114,6 +108,7 @@ public class Main {
         bookingService.registerNewBooking(booking);
 
         System.out.println(booking);
+        System.out.println();
     }
     public static void showAllBooking() {
         BookingService bookingService = new BookingService();
@@ -139,6 +134,7 @@ public class Main {
                 break;
             }
         }
+        System.out.println();
     }
 }
 

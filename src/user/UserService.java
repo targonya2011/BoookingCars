@@ -3,7 +3,7 @@ package user;
 import java.util.UUID;
 
 public class UserService {
-    private UserDAO userDAO = new UserDAO();
+    private UserArrayDataAccessService userDAO = new UserArrayDataAccessService();
 
     public UserService() {
     }
@@ -16,10 +16,8 @@ public class UserService {
                 user = this.seeUsers()[i];
             }
         }
-
         return user;
     }
-
     public User[] seeUsers() {
         return this.userDAO.getUsers();
     }

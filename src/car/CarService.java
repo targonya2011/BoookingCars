@@ -1,7 +1,7 @@
 package car;
 
 public class CarService {
-    private CarDAO carDAO = new CarDAO();
+    private CarArrayDataAcessService carDAO = new CarArrayDataAcessService();
 
     public Car findCar(String regNumber) {
         Car car = null;
