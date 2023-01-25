@@ -4,9 +4,10 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class BookingService {
-    BookingDAO bookingDAO = new BookingDAO();
+    BookingDAO bookingDAO;
 
-    public BookingService() {
+    public BookingService(BookingDAO bookingDAO) {
+        this.bookingDAO = bookingDAO;
     }
 
     public void registerNewBooking(Booking booking) {

@@ -3,9 +3,10 @@ package user;
 import java.util.UUID;
 
 public class UserService {
-    private UserArrayDataAccessService userDAO = new UserArrayDataAccessService();
+    private UserArrayDataAccessService userArrayDataAccessService;
 
-    public UserService() {
+    public UserService(UserArrayDataAccessService userArrayDataAccessService) {
+        this.userArrayDataAccessService = userArrayDataAccessService;
     }
 
     public User findUser(UUID id) {
@@ -19,7 +20,7 @@ public class UserService {
         return user;
     }
     public User[] seeUsers() {
-        return this.userDAO.getUsers();
+        return this.userArrayDataAccessService.getUsers();
     }
 }
 

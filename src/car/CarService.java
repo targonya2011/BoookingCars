@@ -1,7 +1,7 @@
 package car;
 
 public class CarService {
-    private CarArrayDataAcessService carDAO = new CarArrayDataAcessService();
+    private CarArrayDataAcessService carArrayDataAcessService = new CarArrayDataAcessService();
 
     public Car findCar(String regNumber) {
         Car car = null;
@@ -18,6 +18,6 @@ public class CarService {
     }
 
     public Car[] seeCars() {
-        return this.carDAO.getCars();
+        return this.carArrayDataAcessService.getCars();
     }
 }
