@@ -1,5 +1,6 @@
 package user;
 
+import java.util.List;
 import java.util.UUID;
 
 public class UserService {
@@ -12,14 +13,17 @@ public class UserService {
     public User findUser(UUID id) {
         User user = null;
 
-        for(int i = 0; i < this.seeUsers().length; ++i) {
-            if (this.seeUsers()[i].getId().equals(id)) {
-                user = this.seeUsers()[i];
+        for (int i = 0; i < seeUsers().size(); i++) {
+            if (this.seeUsers().get(i).getId().equals(id)) {
+                user = this.seeUsers().get(i);
+            }
+            else {
+                System.out.println(String.format("User with id %s not found", id));
             }
         }
         return user;
     }
-    public User[] seeUsers() {
+    public List<User> seeUsers() {
         return this.userArrayDataAccessService.getUsers();
     }
 }

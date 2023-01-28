@@ -1,21 +1,29 @@
 package booking;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 public class BookingService {
-    BookingDAO bookingDAO;
+    BookingDAO bookingDAO = new BookingDAO();
 
     public BookingService(BookingDAO bookingDAO) {
         this.bookingDAO = bookingDAO;
     }
-
-    public void registerNewBooking(Booking booking) {
-        if (booking == null) {
-            throw new IllegalArgumentException("Is not available booking :(");
-        } else {
-            this.bookingDAO.saveBooking(booking);
+    public BookingService() {
+    }
+    public List<Booking> showAllBookings() {
+        List<Booking> allBooking = getAllBooking();
+        if (allBooking.isEmpty()) {
+            System.out.println("We don't have any bookings");
+            return Collections.emptyList();
         }
+        return allBooking;
+    }
+    public void book() {
+
     }
 
     public String generateBookingRef() {
@@ -29,7 +37,7 @@ public class BookingService {
         return bookingDate;
     }
 
-    public Booking[] showAllBooking() {
+    public List <Booking> getAllBooking() {
         return this.bookingDAO.selectAllBookings();
     }
 }
