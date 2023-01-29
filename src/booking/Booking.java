@@ -2,6 +2,8 @@ package booking;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+
+import car.Car;
 import user.User;
 
 public class Booking {
@@ -10,14 +12,17 @@ public class Booking {
     private LocalDateTime bookingTime;
     private boolean isCancelled = false;
 
+    private Car car;
+
     public Booking() {
     }
 
-    public Booking(String bookingId, User user, LocalDateTime bookingTime, boolean isCancelled) {
+    public Booking(String bookingId, User user, LocalDateTime bookingTime, boolean isCancelled, Car car) {
         this.bookingId = bookingId;
         this.user = user;
         this.bookingTime = bookingTime;
         this.isCancelled = isCancelled;
+        this.car = car;
     }
 
     public String getBookingId() {

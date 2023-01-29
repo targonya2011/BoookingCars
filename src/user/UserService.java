@@ -11,17 +11,12 @@ public class UserService {
     }
 
     public User findUser(UUID id) {
-        User user = null;
-
-        for (int i = 0; i < seeUsers().size(); i++) {
-            if (this.seeUsers().get(i).getId().equals(id)) {
-                user = this.seeUsers().get(i);
-            }
-            else {
-                System.out.println(String.format("User with id %s not found", id));
+        for (User user : seeUsers()) {
+            if (user.getId().equals(id)) {
+                return user;
             }
         }
-        return user;
+        return null;
     }
     public List<User> seeUsers() {
         return this.userArrayDataAccessService.getUsers();

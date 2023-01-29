@@ -9,6 +9,10 @@ public class BookingDAO {
     public BookingDAO() {
     }
 
+    public void book (Booking booking) {
+        bookings.add(booking);
+    }
+
     public List <Booking> selectAllBookings() {
         return bookings;
     }

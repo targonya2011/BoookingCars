@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class CarService {
-    private CarDataService carDataService = new CarDataService();
+    private CarDataService carDataService;
     public CarService(CarDataService carDataService) {
         this.carDataService = carDataService;
     }
@@ -25,13 +25,12 @@ public class CarService {
         return electricCars;
     }
     public Car findCar(String regNumber) {
-        Car car = null;
-        for(int i = 0; i < this.seeCars().size(); ++i) {
-            if (this.seeCars().get(i).getRegNumber().equals(regNumber)) {
-                car = this.seeCars().get(i);
+        for (Car car : seeCars()) {
+            if (car.getRegNumber().equals(regNumber)) {
+                return car;
             }
         }
-        return car;
+        return null;
     }
     public List <Car> getAvailableCars() {
         List <Car> allCars = seeCars();
@@ -50,9 +49,6 @@ public class CarService {
             return Collections.emptyList();
         }
         return availableCars;
-    }
-
-    public CarService() {
     }
 
     public List<Car> seeCars() {

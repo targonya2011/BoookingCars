@@ -1,5 +1,9 @@
 package booking;
 
+import car.Car;
+import car.CarService;
+import user.User;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,12 +11,12 @@ import java.util.List;
 import java.util.UUID;
 
 public class BookingService {
-    BookingDAO bookingDAO = new BookingDAO();
+    private final BookingDAO bookingDAO;
+    private final CarService carService;
 
-    public BookingService(BookingDAO bookingDAO) {
+    public BookingService(BookingDAO bookingDAO, CarService carService) {
         this.bookingDAO = bookingDAO;
-    }
-    public BookingService() {
+        this.carService = carService;
     }
     public List<Booking> showAllBookings() {
         List<Booking> allBooking = getAllBooking();
@@ -22,16 +26,19 @@ public class BookingService {
         }
         return allBooking;
     }
-    public void book() {
 
+    public String bookCar(User user, Car car) {
+        List <Car> availableCars = carService.getAvailableCars();
+        if (availableCars.isEmpty()) {
+            throw new IllegalStateException("No car available for renting");
+        }
+       return generateBookingRef();
     }
-
     public String generateBookingRef() {
         UUID uuid = UUID.randomUUID();
         String bookingRef = uuid.toString();
         return bookingRef;
     }
-
     public LocalDateTime generateBookingDate() {
         LocalDateTime bookingDate = LocalDateTime.now();
         return bookingDate;
@@ -40,4 +47,15 @@ public class BookingService {
     public List <Booking> getAllBooking() {
         return this.bookingDAO.selectAllBookings();
     }
+    public List<Booking> getUsersWithCar(UUID id) {
+        List <Booking> users = new ArrayList<>();
+        for (Booking booking : getAllBooking()) {
+            if (booking.getUser().getId().equals(id)) {
+                users.add(booking);
+            }
+        }
+        return null;
+    }
+
+
 }
