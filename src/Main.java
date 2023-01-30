@@ -18,7 +18,6 @@ public class Main {
 
         CarDataService carDataService = new CarDataService();
         CarService carService = new CarService(carDataService);
-
         UserArrayDataAccessService userArrayDataAccessService = new UserArrayDataAccessService();
         UserService userService = new UserService(userArrayDataAccessService);
 

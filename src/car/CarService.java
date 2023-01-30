@@ -3,6 +3,7 @@ package car;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarService {
     private CarDataService carDataService;
@@ -16,13 +17,7 @@ public class CarService {
         if (cars.size() == 0) {
             return Collections.emptyList();
         }
-        List<Car> electricCars = new ArrayList<>();
-        for (Car car: cars) {
-            if (car.isElectric()) {
-                electricCars.add(car);
-            }
-        }
-        return electricCars;
+        return cars.stream().filter(c -> c.isElectric()).collect(Collectors.toList());
     }
     public Car findCar(String regNumber) {
         for (Car car : seeCars()) {
@@ -38,17 +33,13 @@ public class CarService {
             System.out.println("We don't have any cars :(");
             return Collections.emptyList();
         }
-        List <Car> availableCars = new ArrayList<>();
-        for (Car car : allCars) {
-            if (car.isAvailable()) {
-                availableCars.add(car);
-            }
-        }
-        if (availableCars.isEmpty()) {
+        List<Car> collect = allCars.stream()
+                .filter(Car::isAvailable)
+                .collect(Collectors.toList());
+        if (collect == null) {
             System.out.println("We don't have any electric cars :(");
             return Collections.emptyList();
-        }
-        return availableCars;
+        } else return collect;
     }
 
     public List<Car> seeCars() {

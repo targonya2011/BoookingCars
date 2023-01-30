@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class BookingService {
     private final BookingDAO bookingDAO;
@@ -48,13 +50,10 @@ public class BookingService {
         return this.bookingDAO.selectAllBookings();
     }
     public List<Booking> getUsersWithCar(UUID id) {
-        List <Booking> users = new ArrayList<>();
-        for (Booking booking : getAllBooking()) {
-            if (booking.getUser().getId().equals(id)) {
-                users.add(booking);
-            }
-        }
-        return null;
+        return getAllBooking()
+                .stream()
+                .filter(b -> b.getUser().getId().equals(id))
+                .collect(Collectors.toList());
     }
 
 
