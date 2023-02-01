@@ -1,6 +1,5 @@
 package car;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,12 +19,11 @@ public class CarService {
         return cars.stream().filter(c -> c.isElectric()).collect(Collectors.toList());
     }
     public Car findCar(String regNumber) {
-        for (Car car : seeCars()) {
-            if (car.getRegNumber().equals(regNumber)) {
-                return car;
-            }
-        }
-        return null;
+        List<Car> collect = seeCars()
+                .stream()
+                .filter(c -> c.getRegNumber()
+                        .equals(regNumber)).collect(Collectors.toList());
+        return collect == null ? null : collect.get(0);
     }
     public List <Car> getAvailableCars() {
         List <Car> allCars = seeCars();
