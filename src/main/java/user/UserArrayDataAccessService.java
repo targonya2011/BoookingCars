@@ -7,8 +7,8 @@ import java.util.Scanner;
 import java.util.UUID;
 
 public class UserArrayDataAccessService implements UserDAO {
-    public static List<User> users() {
-        File file = new File("D:\\Users\\Denis-skillbox\\Desktop\\BoookingCars\\resources\\users.csv");
+    public List<User> users() {
+        File file = new File(getClass().getClassLoader().getResource("users.csv").getPath());
         List<User> usersList = new ArrayList<>();
         try{
             Scanner scanner = new Scanner(file);

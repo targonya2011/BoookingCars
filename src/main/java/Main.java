@@ -4,8 +4,10 @@ import booking.BookingService;
 import car.Car;
 import car.CarDataService;
 import car.CarService;
+import com.github.javafaker.Faker;
 import user.User;
 import user.UserArrayDataAccessService;
+import user.UserFakerDataAccessService;
 import user.UserService;
 
 import java.util.Scanner;
@@ -13,12 +15,11 @@ import java.util.UUID;
 
 public class Main {
     public static void main(String[] args) {
+        UserFakerDataAccessService userArrayDataAccessService = new UserFakerDataAccessService();
+        UserService userService = new UserService(userArrayDataAccessService);
 
         CarDataService carDataService = new CarDataService();
         CarService carService = new CarService(carDataService);
-        UserArrayDataAccessService userArrayDataAccessService = new UserArrayDataAccessService();
-        UserService userService = new UserService(userArrayDataAccessService);
-
         BookingDAO bookingDAO = new BookingDAO();
         BookingService bookingService = new BookingService(bookingDAO, carService);
 
@@ -68,9 +69,10 @@ public class Main {
                         "7 - Exit\n");
     }
     public static void showAllUsers(UserService userService) {
-        for(User user : userService.seeUsers()) {
-            System.out.println(user.toString());
-        }
+        userService.seeUsers()
+                .stream()
+                .map(User::toString)
+                .forEach(System.out::println);
         System.out.println();
     }
     public static void showAvailableCars(CarService carService) {
