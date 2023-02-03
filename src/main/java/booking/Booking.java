@@ -72,7 +72,22 @@ public class Booking {
         return Objects.hash(new Object[]{this.bookingId, this.user, this.bookingTime, this.isCancelled});
     }
 
+    @Override
     public String toString() {
-        return "Booking{bookingId=" + this.bookingId + ", user=" + this.user + ", bookingTime=" + this.bookingTime + ", isCancelled=" + this.isCancelled + "}";
+        return "Booking{" +
+                "bookingId='" + bookingId + '\'' +
+                ", user=" + user +
+                ", bookingTime=" + bookingTime +
+                ", isCancelled=" + isCancelled +
+                ", car=" + car +
+                '}';
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public Car getCar() {
+        return car;
     }
 }

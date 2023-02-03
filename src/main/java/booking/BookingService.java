@@ -5,10 +5,10 @@ import car.CarService;
 import user.User;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class BookingService {
     private final BookingDAO bookingDAO;
@@ -47,11 +47,16 @@ public class BookingService {
     public List <Booking> getAllBooking() {
         return this.bookingDAO.selectAllBookings();
     }
-    public List<Booking> getUsersWithCar(UUID id) {
-        return getAllBooking()
-                .stream()
-                .filter(b -> b.getUser().getId().equals(id))
-                .collect(Collectors.toList());
+    public List<Car> getUsersWithCar(UUID id) {
+        List<Booking> bookings = getAllBooking();
+        List<Car> carList = new ArrayList<>();
+        for(Booking booking : bookings) {
+            if (booking.getUser().getId().equals(id)) {
+                carList.add(booking.getCar());
+            }
+        }
+
+        return carList;
     }
 
 
