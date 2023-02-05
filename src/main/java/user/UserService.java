@@ -5,7 +5,6 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class UserService {
-//    private UserArrayDataAccessService userArrayDataAccessService;
     private UserFakerDataAccessService userArrayDataAccessService;
     public UserService(UserFakerDataAccessService userArrayDataAccessService) {
         this.userArrayDataAccessService = userArrayDataAccessService;

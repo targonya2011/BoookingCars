@@ -10,7 +10,6 @@ public class CarService {
         this.carDataService = carDataService;
     }
 
-
     public List<Car> getAllAvailableElectricCars() {
         List<Car> cars = getAvailableCars();
         if (cars.size() == 0) {

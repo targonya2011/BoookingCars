@@ -127,8 +127,9 @@ public class Main {
 
     public static void showUsersWithCar(BookingService bookingService) {
         try {
-        if (bookingService.showAllBookings() == null)
+        if (bookingService.showAllBookings() == null) {
             System.out.println("We don't have any bookings :(");
+        }
         else {
             System.out.println("▶ Select user id: ");
             Scanner sc = new Scanner(System.in);
