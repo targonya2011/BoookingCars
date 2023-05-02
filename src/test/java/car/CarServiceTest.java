@@ -1,5 +1,8 @@
 package car;
 
+import example.BookingCars.com.example.BookingCars.car.Car;
+import example.BookingCars.com.example.BookingCars.car.CarDataService;
+import example.BookingCars.com.example.BookingCars.car.CarService;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
